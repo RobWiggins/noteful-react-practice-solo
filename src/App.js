@@ -27,8 +27,13 @@ export default class App extends React.Component {
       // GoBack - go back button that returns to home page
 
       <div className="app">
-        {/* <Route exact path="/" component={Header} /> */}
-        <Route path="/" component={NavFolderList} />
+        <Route exact path="/" component={Header} />
+        <Route exact path="/" component={NavFolderList} />
+
+
+        <Route path="/folder" component={Header} />
+        <Route path="/folder" component={NavFolderList} />
+
       </div>
     );
   }

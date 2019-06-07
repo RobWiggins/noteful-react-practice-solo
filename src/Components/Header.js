@@ -6,9 +6,9 @@ export default class Header extends Component {
   render() {
     return (
       <Link to='/'>
-        <Header>
-          <h1>Noteful</h1>
-        </Header>
+        {/* <Header> */}
+          Noteful
+        {/* </Header> */}
       </Link> 
     );
 

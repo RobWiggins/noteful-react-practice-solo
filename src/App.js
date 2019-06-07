@@ -4,7 +4,7 @@ import store from './store';
 import { Route } from 'react-router-dom'
 import NavFolderList from './Components/NavFolderList'
 import Header from './Components/Header'
-
+import FolderNotes from './Components/FolderNotes'
 
 export default class App extends React.Component {
 
@@ -34,14 +34,16 @@ export default class App extends React.Component {
       // generic header
       // FolderList - only show current folder in as text
       // GoBack - go back button that returns to home page
+      // Note
 
       <div className="app">
         <Route exact path="/" component={Header} />
         <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
 
 
-        <Route path="/folder" component={Header} />
-        <Route path="/folder/:folderId" component={NavFolderList} />
+        <Route path="/folder/:folderId" component={Header} />
+        <Route path="/folder/:folderId" render={() => < NavFolderList folders={this.state.folders} />} />
+        <Route path="/folder/:folderId" render={(props) => < FolderNotes notes={this.state.notes} match={props.match} />} />
 
       </div>
     );

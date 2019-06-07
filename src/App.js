@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
 import store from './store';
-import { Route } from 'react-router-dom'
-import NavFolderList from './Components/NavFolderList'
-import Header from './Components/Header'
-import FolderNotes from './Components/FolderNotes'
-import AllFolderNotes from './Components/AllFolderNotes'
-import Note from './Components/Note'
+// eslint-disable-next-line no-unused-vars
+import { Route, Switch } from 'react-router-dom';
+import NavFolderList from './Components/NavFolderList';
+import Header from './Components/Header';
+import FolderNotes from './Components/FolderNotes';
+import AllFolderNotes from './Components/AllFolderNotes';
+import Note from './Components/Note';
+// eslint-disable-next-line no-unused-vars
+import PageNotFound from './Components/PageNotFound';
 
 export default class App extends React.Component {
 
@@ -40,11 +43,15 @@ export default class App extends React.Component {
       // GoBack - go back button that returns to home page
       // Note
 
+
+      /* ugly solution right now with wrapping the page not found so switch wont work, need to separate paths into unique divs
+      and components in the future i.e. < HomePage /> , < FolderPage />, etc */
       <div className="app">
+        {/* <Switch> */}
         <Route path="/" component={Header} />
         <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
         <Route exact path="/" render={() => < AllFolderNotes notes={this.state.notes} />} />
-
+          
         {/* <Route path="/folder/:folderId" component={Header} /> */}
         <Route path="/folder/:folderId" render={() => < NavFolderList folders={this.state.folders} />} />
         <Route path="/folder/:folderId" render={(props) => < FolderNotes notes={this.state.notes} match={props.match} />} />
@@ -52,7 +59,8 @@ export default class App extends React.Component {
         {/* Add path and display for specific note selection */}
         {/* go back button */}
         <Route path="/note/:noteId" render={(props) => < Note notes={this.state.notes} linkInfo={props} />} />
-
+        {/* <Route component={PageNotFound} /> */}
+        {/* // </Switch> */}
 
       </div>
     );

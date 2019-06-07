@@ -42,8 +42,6 @@ export default class App extends React.Component {
         <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
         <Route exact path="/" render={() => < AllFolderNotes notes={this.state.notes} />} />
 
-
-
         <Route path="/folder/:folderId" component={Header} />
         <Route path="/folder/:folderId" render={() => < NavFolderList folders={this.state.folders} />} />
         <Route path="/folder/:folderId" render={(props) => < FolderNotes notes={this.state.notes} match={props.match} />} />

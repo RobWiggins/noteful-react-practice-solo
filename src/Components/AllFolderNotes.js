@@ -5,11 +5,6 @@ export default class AllFolderNotes extends React.Component {
 
   render() {
     console.log(this.props.notes);
-    // console.log(this.props.match.params.folderId);
-
-    // let currentFolderId = this.props.match.params.folderId;
-
-    // for specific folder notes... need to filter out non-matching folderIds
 
     let notesInFolder = this.props.notes.map( (note) => {
       return (

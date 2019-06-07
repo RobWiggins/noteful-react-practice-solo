@@ -17,13 +17,13 @@ export default class FolderNotes extends React.Component {
           <li key={note.id}>
             <h3 className="note-title">{note.name}</h3>
             <p className="modified-date">{note.modified}</p>
-            <p className="note-content">{note.content}</p>
+            {/* <p className="note-content hidden">{note.content}</p> */}
           </li>
         );
       });
 
     return (
-      <ul>
+      <ul class="notes">
         {notesInFolder}
       </ul>
     );

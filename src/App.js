@@ -6,6 +6,7 @@ import NavFolderList from './Components/NavFolderList'
 import Header from './Components/Header'
 import FolderNotes from './Components/FolderNotes'
 import AllFolderNotes from './Components/AllFolderNotes'
+import Note from './Components/Note'
 
 export default class App extends React.Component {
 
@@ -14,9 +15,11 @@ export default class App extends React.Component {
     this.state = store; // { folders, notes}
   }
 
-  handleFolderClick() {
-
+  handleNoteClick = (event) => {
+    
   }
+
+
 
   render() {
     return (
@@ -38,13 +41,18 @@ export default class App extends React.Component {
       // Note
 
       <div className="app">
-        <Route exact path="/" component={Header} />
+        <Route path="/" component={Header} />
         <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
         <Route exact path="/" render={() => < AllFolderNotes notes={this.state.notes} />} />
 
-        <Route path="/folder/:folderId" component={Header} />
+        {/* <Route path="/folder/:folderId" component={Header} /> */}
         <Route path="/folder/:folderId" render={() => < NavFolderList folders={this.state.folders} />} />
         <Route path="/folder/:folderId" render={(props) => < FolderNotes notes={this.state.notes} match={props.match} />} />
+
+        {/* Add path and display for specific note selection */}
+        {/* go back button */}
+        <Route path="/note/:noteId" render={(props) => < Note notes={this.state.notes} match={props} />} />
+
 
       </div>
     );

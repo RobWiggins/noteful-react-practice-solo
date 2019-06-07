@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 export default class AllFolderNotes extends React.Component {
 
@@ -7,8 +7,8 @@ export default class AllFolderNotes extends React.Component {
 
     let notesInFolder = this.props.notes.map( (note) => {
       return (
-        <li key={note.id}>
-          <h3 className="note-title">{note.name}</h3>
+        <li key={note.id} className="note-abbreviated">
+          <h3 className="note-title"><Link to={`/note/${note.id}`}>{note.name}</Link></h3>
           <p className="modified-date">{note.modified}</p>
           {/* <p className="note-content hidden">{note.content}</p> */}
         </li>
@@ -16,7 +16,7 @@ export default class AllFolderNotes extends React.Component {
     });
 
     return (
-      <ul class="notes">
+      <ul className="notes">
         {notesInFolder}
       </ul>
     );

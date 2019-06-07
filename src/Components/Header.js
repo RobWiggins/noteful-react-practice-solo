@@ -5,7 +5,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header role="banner">
         <h1>
           <Link to="/">
             Noteful

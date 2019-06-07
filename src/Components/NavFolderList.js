@@ -16,7 +16,7 @@ export default class NavFolderList extends React.Component {
     });
 
     return (
-      <nav>
+      <nav className="nav-folders">
         {/* <NavLink to="/folder">Folder 1</NavLink> 
         <NavLink to="/folder">Folder 2</NavLink>
         <NavLink to="/folder">Folder 3</NavLink> */}

@@ -51,7 +51,7 @@ export default class App extends React.Component {
 
         {/* Add path and display for specific note selection */}
         {/* go back button */}
-        <Route path="/note/:noteId" render={(props) => < Note notes={this.state.notes} match={props} />} />
+        <Route path="/note/:noteId" render={(props) => < Note notes={this.state.notes} linkInfo={props} />} />
 
 
       </div>

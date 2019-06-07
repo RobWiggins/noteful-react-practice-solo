@@ -5,11 +5,13 @@ export default class Header extends Component {
 
   render() {
     return (
-      <Link to='/'>
-        {/* <Header> */}
-          Noteful
-        {/* </Header> */}
-      </Link> 
+      <header>
+        <h1>
+          <Link to="/">
+            Noteful
+          </Link>
+        </h1>
+      </header>
     );
 
   }

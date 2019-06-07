@@ -8,6 +8,15 @@ import Header from './Components/Header'
 
 export default class App extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = store; // { folders, notes}
+  }
+
+  handleFolderClick() {
+
+  }
+
   render() {
     return (
       /* (main route) exact path="/" */
@@ -28,11 +37,11 @@ export default class App extends React.Component {
 
       <div className="app">
         <Route exact path="/" component={Header} />
-        <Route exact path="/" component={NavFolderList} />
+        <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
 
 
         <Route path="/folder" component={Header} />
-        <Route path="/folder" component={NavFolderList} />
+        <Route path="/folder/:folderId" component={NavFolderList} />
 
       </div>
     );

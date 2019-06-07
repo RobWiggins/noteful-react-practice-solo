@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom'
 import NavFolderList from './Components/NavFolderList'
 import Header from './Components/Header'
 import FolderNotes from './Components/FolderNotes'
+import AllFolderNotes from './Components/AllFolderNotes'
 
 export default class App extends React.Component {
 
@@ -39,6 +40,8 @@ export default class App extends React.Component {
       <div className="app">
         <Route exact path="/" component={Header} />
         <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
+        <Route exact path="/" render={() => < AllFolderNotes notes={this.state.notes} />} />
+
 
 
         <Route path="/folder/:folderId" component={Header} />

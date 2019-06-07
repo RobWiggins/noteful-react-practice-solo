@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import store from './store';
 // eslint-disable-next-line no-unused-vars
 import { Route, Switch } from 'react-router-dom';
 import NavFolderList from './Components/NavFolderList';
@@ -10,16 +9,52 @@ import AllFolderNotes from './Components/AllFolderNotes';
 import Note from './Components/Note';
 // eslint-disable-next-line no-unused-vars
 import PageNotFound from './Components/PageNotFound';
+import NotefulContext from './Components/NotefulContext'
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = store; // { folders, notes}
+    this.state = {
+      folders: [],
+      notes: [],
+    };
   }
 
   handleNoteClick = (event) => {
     
+  }
+
+  componentDidMount() {
+
+    // get and store folder data from api
+    fetch("http://localhost:9090/folders")
+    .then(response => { 
+      if (!response.ok) {
+        throw new Error('something went wrong with folder fetch!');
+      }
+      return response.json();
+    })
+    .then(data => {
+      this.setState( {
+        folders: data,
+    })})
+    .catch(error => console.log(error.message));
+
+    // get and store note data from api
+    fetch("http://localhost:9090/notes")
+    .then(response => { 
+      if (!response.ok) {
+        throw new Error('something went wrong with notes fetch!');
+      }
+      return response.json();
+    })
+    .then(data => {
+      this.setState( {
+        notes: data,
+    })})
+    .catch(error => console.log(error.message));
+
   }
 
 
@@ -57,7 +92,6 @@ export default class App extends React.Component {
         <Route path="/folder/:folderId" render={(props) => < FolderNotes notes={this.state.notes} match={props.match} />} />
 
         {/* Add path and display for specific note selection */}
-        {/* go back button */}
         <Route path="/note/:noteId" render={(props) => < Note notes={this.state.notes} linkInfo={props} />} />
         {/* <Route component={PageNotFound} /> */}
         {/* // </Switch> */}

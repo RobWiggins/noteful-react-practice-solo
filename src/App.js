@@ -57,11 +57,7 @@ export default class App extends React.Component {
 
   }
 
-
-
-  render() {
-    return (
-      /* (main route) exact path="/" */
+/* (main route) exact path="/" */
 
       // generic header - that you can click on to go back to "/"
       // NavFolderList
@@ -81,22 +77,32 @@ export default class App extends React.Component {
 
       /* ugly solution right now with wrapping the page not found so switch wont work, need to separate paths into unique divs
       and components in the future i.e. < HomePage /> , < FolderPage />, etc */
+
+  render() {
+
+    return (
+      
+      < NotefulContext.Provider value={{
+        folders: this.state.folders,
+        notes: this.state.notes,
+      }}>
       <div className="app">
         {/* <Switch> */}
         <Route path="/" component={Header} />
-        <Route exact path="/" render={() => < NavFolderList folders={this.state.folders} />} />
-        <Route exact path="/" render={() => < AllFolderNotes notes={this.state.notes} />} />
+        <Route exact path="/" component={NavFolderList} />
+        <Route exact path="/" component={AllFolderNotes} />
           
         {/* <Route path="/folder/:folderId" component={Header} /> */}
-        <Route path="/folder/:folderId" render={() => < NavFolderList folders={this.state.folders} />} />
-        <Route path="/folder/:folderId" render={(props) => < FolderNotes notes={this.state.notes} match={props.match} />} />
+        <Route path="/folder/:folderId" component={NavFolderList} />
+        <Route path="/folder/:folderId" render={(props) => < FolderNotes match={props.match} />} />
 
-        {/* Add path and display for specific note selection */}
-        <Route path="/note/:noteId" render={(props) => < Note notes={this.state.notes} linkInfo={props} />} />
+        <Route path="/note/:noteId" render={(props) => < Note linkInfo={props} />} />
         {/* <Route component={PageNotFound} /> */}
         {/* // </Switch> */}
-
       </div>
-    );
+      </NotefulContext.Provider>
+      
+    )
   }
+
 }

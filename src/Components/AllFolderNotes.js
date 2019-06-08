@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NotefulContext from './NotefulContext';
 
 export default class AllFolderNotes extends React.Component {
 
+  static contextType = NotefulContext;
+
   render() {
 
-    let notesInFolder = this.props.notes.map( (note) => {
+    let notesInFolder = this.context.notes.map( (note) => {
       let lastModified = (new Date(note.modified)).toLocaleDateString();
 
       return (

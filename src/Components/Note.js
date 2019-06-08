@@ -1,12 +1,15 @@
 import React from 'react';
+import NotefulContext from './NotefulContext';
 
 export default class Note extends React.Component {
+
+  static contextType = NotefulContext;
 
   render() {
     
     let currentNoteId = this.props.linkInfo.match.params.noteId
     
-    const currentNote = this.props.notes.find( note => note.id === currentNoteId);
+    const currentNote = this.context.notes.find( note => note.id === currentNoteId);
     let noteModified = (new Date(currentNote.modified)).toLocaleDateString();
     return (
       <div className="note-detailed-container">

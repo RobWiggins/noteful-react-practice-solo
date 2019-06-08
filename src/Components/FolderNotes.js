@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import NotefulContext from './NotefulContext';
 
 export default class FolderNotes extends React.Component {
+
+  static contextType = NotefulContext;
 
   render() {
 
     let currentFolderId = this.props.match.params.folderId;
 
     // get the notes that match the current selected folder ID and parse note info
-    let notesInFolder = this.props.notes
+    let notesInFolder = this.context.notes
       .filter(note => {
         return note.folderId === currentFolderId;
       })
